@@ -1,0 +1,67 @@
+/* Tema do Angular Material */
+@import './app/shared/styles/material-theme.scss';
+
+/* Admin LTE */
+@import '~ionicons/css/ionicons.min.css';
+@import '~admin-lte/plugins/fontawesome-free/css/all.min.css';
+@import '~admin-lte/plugins/icheck-bootstrap/icheck-bootstrap.min.css';
+@import '~admin-lte/dist/css/adminlte.min.css';
+
+/* Lib Components */
+@import '~ngx-toastr/toastr';
+
+/* Estrutural */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.content-wrapper {
+  .content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+.bs-datepicker-head,
+.bs-datepicker-head, .bs-datepicker button:active,
+.bs-datepicker-body table td span.selected,
+.bs-datepicker-body table td.selected span,
+.bs-datepicker-body table td span[class*="select-"]:after,
+.bs-datepicker-body table td[class*="select-"] span:after,
+.bs-datepicker-body table td.active-week span:hover 
+{
+  background-color:#3c8dbc !important; 
+}
+
+.bs-datepicker-body table td.week span 
+{
+  color: #3c8dbc !important; 
+}
+
+@import './app/shared/styles/form.scss';
+
+/* Lib Component Customization */
+@import './app/shared/styles/confirmation-popover.scss';
+@import './app/shared/styles/material-table.scss';
+@import './app/shared/styles/material-dialog.scss';

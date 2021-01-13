@@ -1,0 +1,9 @@
+.content-wrapper {
+  min-height: calc(100vh - 95px);
+  height: 100%;
+
+  .content {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
