@@ -4,6 +4,7 @@ import ptBr from '@angular/common/locales/pt';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
@@ -23,6 +24,10 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { UserDropdownMenuComponent } from './shared/layout/header/user-dropdown-menu/user-dropdown-menu.component';
 import { MainComponent } from './shared/layout/main/main.component';
 import { SidebarComponent } from './shared/layout/sidebar/sidebar.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { getPtBrPaginatorIntl } from './core/helpers/ptbr-paginator-intl';
+import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
 
 defineLocale('pt-br', ptBrLocale);
 registerLocaleData(ptBr);
@@ -37,9 +42,11 @@ registerLocaleData(ptBr);
     SidebarComponent,
     UserDropdownMenuComponent,
     ErroComponent,
+    ProdutoListComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -61,10 +68,13 @@ registerLocaleData(ptBr);
     HttpClientModule,
     LoadingBarHttpClientModule,
     LoadingBarRouterModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt' },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() },
     DatePipe
   ],
   bootstrap: [AppComponent],

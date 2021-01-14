@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ErroComponent } from './pages/erro/erro.component';
 import { InicialComponent } from './pages/inicial/inicial.component';
+import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
 import { MainComponent } from './shared/layout/main/main.component';
 
 const routes: Routes = [
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: '',
         component: InicialComponent,
+      },
+      {
+        path: 'produtos',
+        component: ProdutoListComponent,
       },
     ],
   },
