@@ -13,7 +13,7 @@ export class ProdutoService extends BaseService {
         super(httpClient);
     }
 
-    public obter(nome: string): Promise<IBaseModel<IProdutoModel[]>> {
+    public listar(nome: string): Promise<IBaseModel<IProdutoModel[]>> {
         let params = new HttpParams();
 
         if (nome) {
@@ -21,7 +21,25 @@ export class ProdutoService extends BaseService {
         }
 
         return this.httpClient
-        .get<IBaseModel<IProdutoModel[]>>(`${this.apiBaseUrl}/produto`, { params })
+        .get<IBaseModel<IProdutoModel[]>>(`${this.apiBaseUrl}/produtos`, { params })
         .toPromise();
-      }
+    }
+
+    public obterPorId(id: string): Promise<IBaseModel<IProdutoModel>> {
+        return this.httpClient
+        .get<IBaseModel<IProdutoModel>>(`${this.apiBaseUrl}/produtos/${id}`, { })
+        .toPromise();
+    }
+
+    public async inserir(data: IProdutoModel): Promise<IBaseModel<IProdutoModel>> {
+        return this.httpClient
+          .post<IBaseModel<IProdutoModel>>(`${this.apiBaseUrl}/produtos`, data)
+          .toPromise();
+    }
+
+    public async atualizar(data: IProdutoModel): Promise<IBaseModel<IProdutoModel>> {
+        return this.httpClient
+          .put<IBaseModel<IProdutoModel>>(`${this.apiBaseUrl}/produtos/`, data)
+          .toPromise();
+     }
 }
