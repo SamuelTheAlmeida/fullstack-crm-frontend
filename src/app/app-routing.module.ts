@@ -4,6 +4,8 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { ErroComponent } from './pages/erro/erro.component';
 import { InicialComponent } from './pages/inicial/inicial.component';
 import { LoginComponent } from './pages/login/login.component';
+import { PedidoFormComponent } from './pages/pedido/pedido-form/pedido-form.component';
+import { PedidoListComponent } from './pages/pedido/pedido-list/pedido-list.component';
 import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
 import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
 import { UsuarioFormComponent } from './pages/usuario/usuario-form/usuario-form.component';
@@ -43,6 +45,18 @@ const routes: Routes = [
       {
         path: 'usuario/novo',
         component: UsuarioFormComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'pedidos',
+        component: PedidoListComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'pedidos/id/:id',
+        component: PedidoFormComponent, canActivate: [AuthGuard]
+      },
+      {
+        path: 'pedidos/novo',
+        component: PedidoFormComponent, canActivate: [AuthGuard]
       },
     ],
   },

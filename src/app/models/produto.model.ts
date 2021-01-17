@@ -1,5 +1,5 @@
 export interface IProdutoModel {
-    id: string,
-    nome: string,
-    preco: any
+    id: string;
+    nome: string;
+    preco: any;
 }

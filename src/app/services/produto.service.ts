@@ -14,14 +14,8 @@ export class ProdutoService extends BaseService {
     }
 
     public listar(nome: string): Promise<IBaseModel<IProdutoModel[]>> {
-        let params = new HttpParams();
-
-        if (nome) {
-            params.append('nome', nome);
-        }
-
         return this.httpClient
-        .get<IBaseModel<IProdutoModel[]>>(`${this.apiBaseUrl}/produtos`, { params })
+        .get<IBaseModel<IProdutoModel[]>>(`${this.apiBaseUrl}/produtos?nome=${nome || ''}`, )
         .toPromise();
     }
 

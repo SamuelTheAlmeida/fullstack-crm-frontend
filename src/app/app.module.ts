@@ -1,6 +1,5 @@
 import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import ptBr from '@angular/common/locales/pt';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,9 +21,6 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 import { UserDropdownMenuComponent } from './shared/layout/header/user-dropdown-menu/user-dropdown-menu.component';
 import { MainComponent } from './shared/layout/main/main.component';
 import { SidebarComponent } from './shared/layout/sidebar/sidebar.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { getPtBrPaginatorIntl } from './core/helpers/ptbr-paginator-intl';
 import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -34,7 +30,21 @@ import { UsuarioFormComponent } from './pages/usuario/usuario-form/usuario-form.
 import { LoginComponent } from './pages/login/login.component';
 import { JwtInterceptor } from './core/http/jwt.interceptor';
 import { ErrorInterceptor } from './core/http/error.interceptor';
-
+import { PedidoListComponent } from './pages/pedido/pedido-list/pedido-list.component';
+import { PedidoFormComponent } from './pages/pedido/pedido-form/pedido-form.component';
+import { ModalSelecionarProdutoComponent } from './pages/modal-selecionar-produto/modal-selecionar-produto.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { CdkTableModule } from '@angular/cdk/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon'; 
 
 registerLocaleData(localePt, 'pt-BR');
 
@@ -52,7 +62,10 @@ registerLocaleData(localePt, 'pt-BR');
     ProdutoFormComponent,
     UsuarioListComponent,
     UsuarioFormComponent,
-    LoginComponent
+    LoginComponent,
+    PedidoListComponent,
+    PedidoFormComponent,
+    ModalSelecionarProdutoComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +94,16 @@ registerLocaleData(localePt, 'pt-BR');
     MatTableModule,
     MatPaginatorModule,
     MatToolbarModule,
-    NgxSpinnerModule
+    MatCheckboxModule,
+    MatProgressBarModule,
+    MatSelectModule,
+    MatSortModule,
+    MatTabsModule,
+    NgxSpinnerModule,
+    MatDialogModule,
+    MatIconModule,
+    ModalModule.forRoot(),
+    CdkTableModule,
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
