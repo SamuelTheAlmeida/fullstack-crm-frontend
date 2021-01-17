@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { IUsuarioModel } from './models/usuario.model';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'fullstack-crm-app';
+  public currentUser: IUsuarioModel;
 
-  constructor() { }
+  constructor(private authService: AuthService) { 
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit() {
 

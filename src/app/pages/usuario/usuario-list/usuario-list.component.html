@@ -7,7 +7,7 @@
                         <a [routerLink]="['/']">
                             <i class="fas fa-home"></i> Página Inicial</a>
                     </li>
-                    <li class="breadcrumb-item active">Produtos</li>
+                    <li class="breadcrumb-item active">Usuários</li>
                 </ol>
             </div>
         </div>
@@ -21,7 +21,7 @@
                 <div class="card card-outline card-lightblue">
                     <div class="card-header">
                         <h3 class="card-title mb-0">
-                            <i class="fas fa-table pr-2"></i> Produtos
+                            <i class="fas fa-table pr-2"></i> Usuários
                         </h3>
                     </div>
 
@@ -41,7 +41,7 @@
                                     </button>
 
                                      <button type="button" class="btn btn-default btn-sm mr-1"
-                                     mwlConfirmationPopover popoverTitle="Exclusão" popoverMessage="Tem certeza que deseja excluir esse produto?" 
+                                     mwlConfirmationPopover popoverTitle="Exclusão" popoverMessage="Tem certeza que deseja excluir esse usuário?" 
                                      placement="bottom" confirmText="Sim" cancelText="Não" (confirm)="excluir(modelSelecionada.id)">
                                         <i class="far fa-stop-circle"></i>
                                         Excluir
@@ -59,14 +59,14 @@
                                     <td mat-cell *matCellDef="let element"> {{element.id}} </td>
                                 </ng-container>
 
-                                <ng-container matColumnDef="nome">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-                                    <td mat-cell *matCellDef="let element">{{element.nome}}</td>
+                                <ng-container matColumnDef="email">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
+                                    <td mat-cell *matCellDef="let element">{{element.email}}</td>
                                 </ng-container>
 
-                                <ng-container matColumnDef="preco">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Preço </th>
-                                    <td mat-cell *matCellDef="let element">{{element.preco.toString().replace(',', '.') | currency}}</td>
+                                <ng-container matColumnDef="perfil">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Perfil </th>
+                                    <td mat-cell *matCellDef="let element">{{element.perfil.descricao}}</td>
                                 </ng-container>
 
                                 <tr mat-row *matRowDef="let row; columns: colunasExibicao;" class="clickable" 

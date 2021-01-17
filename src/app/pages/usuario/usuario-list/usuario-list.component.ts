@@ -3,31 +3,31 @@ import { MatPaginator } from "@angular/material/paginator";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
-import { IProdutoModel } from "src/app/models/produto.model";
-import { ProdutoService } from "src/app/services/produto.service";
+import { IUsuarioModel } from "src/app/models/usuario.model";
+import { UsuarioService } from "src/app/services/usuario.service";
 
 @Component({
-    selector: 'app-produto-list',
-    templateUrl: './produto-list.component.html',
-    styleUrls: ['./produto-list.component.scss']
+    selector: 'app-usuario-list',
+    templateUrl: './usuario-list.component.html',
+    styleUrls: ['./usuario-list.component.scss']
 })
 
-export class ProdutoListComponent implements OnInit {
+export class UsuarioListComponent implements OnInit {
     private tamanhoPagina = 10;
     public pesquisaNome: string; 
-    public dataSource = new MatTableDataSource<IProdutoModel>([]);
+    public dataSource = new MatTableDataSource<IUsuarioModel>([]);
     public modelSelecionada: any;
     public semDados = true;
     public colunasExibicao: string[] = [
         'id',
-        'nome',
-        'preco'
+        'email',
+        'perfil'
       ];
     @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
 
     constructor(
-        private produtoService: ProdutoService,
+        private usuarioService: UsuarioService,
         private toastr: ToastrService,
         private router: Router) {
 
@@ -38,10 +38,10 @@ export class ProdutoListComponent implements OnInit {
     }
 
     public obter() {
-        this.produtoService
-        .listar(this.pesquisaNome)
+        this.usuarioService
+        .listar()
         .then((res) => {
-            this.dataSource = new MatTableDataSource<IProdutoModel>(res.dados);
+            this.dataSource = new MatTableDataSource<IUsuarioModel>(res.dados);
             this.paginator.pageSize = this.tamanhoPagina;
             this.dataSource.paginator = this.paginator;
             this.semDados = res.dados.length === 0;
@@ -52,7 +52,7 @@ export class ProdutoListComponent implements OnInit {
     }
 
     public novo() {
-        this.router.navigate(['/produtos/novo']);
+        this.router.navigate(['/usuario/novo']);
     }
 
     public selecionar(item: any) {
@@ -60,16 +60,15 @@ export class ProdutoListComponent implements OnInit {
     }
 
     public editar(id: string) {
-        this.router.navigate([`/produtos/id/${id}`]);
+        this.router.navigate([`/usuario/id/${id}`]);
     }
 
-    
     public excluir(id: string) {
-        this.produtoService
+        this.usuarioService
           .excluir(id)
           .then((res) => {
             if (res.sucesso) {
-              this.toastr.success('Produto excluído com sucesso!', 'Sucesso');
+              this.toastr.success('Usuário excluído com sucesso!', 'Sucesso');
             } else {
               this.toastr.warning(res.mensagem.descricao, 'Atenção');
             }

@@ -10,13 +10,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoadingBarHttpClientModule } from '@ngx-loading-bar/http-client';
 import { LoadingBarRouterModule } from '@ngx-loading-bar/router';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-import { defineLocale } from 'ngx-bootstrap/chronos';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import localePt from '@angular/common/locales/pt';
 import { ToastrModule } from 'ngx-toastr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthInterceptor } from './core/http/auth.interceptor';
 import { ErroComponent } from './pages/erro/erro.component';
 import { InicialComponent } from './pages/inicial/inicial.component';
 import { FooterComponent } from './shared/layout/footer/footer.component';
@@ -31,6 +29,11 @@ import { getPtBrPaginatorIntl } from './core/helpers/ptbr-paginator-intl';
 import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
+import { UsuarioListComponent } from './pages/usuario/usuario-list/usuario-list.component';
+import { UsuarioFormComponent } from './pages/usuario/usuario-form/usuario-form.component';
+import { LoginComponent } from './pages/login/login.component';
+import { JwtInterceptor } from './core/http/jwt.interceptor';
+import { ErrorInterceptor } from './core/http/error.interceptor';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -46,7 +49,10 @@ registerLocaleData(localePt, 'pt-BR');
     UserDropdownMenuComponent,
     ErroComponent,
     ProdutoListComponent,
-    ProdutoFormComponent
+    ProdutoFormComponent,
+    UsuarioListComponent,
+    UsuarioFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +85,8 @@ registerLocaleData(localePt, 'pt-BR');
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'BRL' },
     { provide: MatPaginatorIntl, useValue: getPtBrPaginatorIntl() },
     

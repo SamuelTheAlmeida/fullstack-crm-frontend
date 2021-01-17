@@ -42,4 +42,10 @@ export class ProdutoService extends BaseService {
           .put<IBaseModel<IProdutoModel>>(`${this.apiBaseUrl}/produtos/`, data)
           .toPromise();
      }
+
+     public async excluir(data: string): Promise<IBaseModel<IProdutoModel>> {
+        return this.httpClient
+          .delete<IBaseModel<IProdutoModel>>(`${this.apiBaseUrl}/produtos?id=${data}`)
+          .toPromise();
+     }
 }
