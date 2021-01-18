@@ -43,7 +43,7 @@
   
                   <div class="form-group col-md-6">
                     <label for="inputNome" class="mb-1">E-mail do cliente</label>
-                    <input type="text" id="inputEmailComprador" class="form-control form-control-sm" formControlName="emailComprador" maxlength="50"
+                    <input type="text" email id="inputEmailComprador" class="form-control form-control-sm" formControlName="emailComprador" maxlength="50"
                      [ngClass]="{ 'is-invalid': f.submitted && form.controls['emailComprador'].invalid }" />
                     <div *ngIf="f.submitted && form.controls['emailComprador'].invalid" class="invalid-feedback">
                       <div *ngIf="form.controls['emailComprador'].errors.required">Campo obrigatório</div>

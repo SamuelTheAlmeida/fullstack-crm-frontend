@@ -41,7 +41,7 @@
                     <input type="text" id="inputId" class="form-control form-control-sm" formControlName="id" />
                   </div>
   
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-5">
                     <label for="inputNome" class="mb-1">Nome</label>
                     <input type="text" id="inputNome" class="form-control form-control-sm" formControlName="nome" maxlength="50"
                      [ngClass]="{ 'is-invalid': f.submitted && form.controls['nome'].invalid }" />
@@ -50,10 +50,21 @@
                     </div>
                   </div>
   
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-4">
                     <label for="inputPreco" class="mb-1">Preço</label>
-                    <input type="text" id="inputPreco" class="form-control form-control-sm" formControlName="preco"
-                     [ngClass]="{ 'is-invalid': f.submitted && form.controls['preco'].invalid }" />
+                     <input matInput
+                        mask="separator.2"
+                        [thousandSeparator]="'.'"
+                        [decimalMarker]="','"
+                        prefix="R$ "
+                        type="text"
+                        [dropSpecialCharacters]="true"
+                        class="form-control form-control-sm"
+                        [ngClass]="{ 'is-invalid': f.submitted && form.controls['preco'].invalid }"
+                        formControlName="preco"
+                        maxlength="14"
+                        >
+
                     <div *ngIf="f.submitted && form.controls['preco'].invalid" class="invalid-feedback">
                       <div *ngIf="form.controls['preco'].errors.required">Campo obrigatório</div>
                     </div>

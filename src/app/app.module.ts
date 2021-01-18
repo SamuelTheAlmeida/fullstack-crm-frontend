@@ -45,8 +45,13 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
+import { IConfig, NgxMaskModule } from 'ngx-mask';
+
 
 registerLocaleData(localePt, 'pt-BR');
+const maskConfig: Partial<IConfig> = {
+  validation: false,
+};
 
 @NgModule({
   declarations: [
@@ -104,6 +109,7 @@ registerLocaleData(localePt, 'pt-BR');
     MatIconModule,
     ModalModule.forRoot(),
     CdkTableModule,
+    NgxMaskModule.forRoot(maskConfig),
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },
