@@ -67,7 +67,9 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
           this.produtosPedidoSemDados = this.produtosPedidoDataSource.filteredData.length === 0;
           this.atualizarTotalPedido();
         } else {
-          this.toastr.error(res.mensagem.descricao, 'Atenção');
+          res.mensagens.forEach(mensagem => {
+            this.toastr.warning(mensagem.descricao, 'Atenção');
+          });
           this.router.navigate(['/pedidos']);
           return;
         }
@@ -103,7 +105,9 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
         this.toastr.success('Registro salvo com sucesso!', 'Sucesso');
         this.router.navigate(['/pedidos']);
       } else {
-        this.toastr.warning(res.mensagem.descricao);
+        res.mensagens.forEach(mensagem => {
+          this.toastr.warning(mensagem.descricao, 'Atenção');
+        });
       }
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');

@@ -47,6 +47,8 @@ export class PedidoListComponent implements OnInit {
             this.semDados = res.dados.length === 0;
         })
         .catch((err) => {
+            alert('abcde');
+            debugger
             this.toastr.error(err.mensagem.descricao, 'Atenção');
         })
     }
@@ -71,7 +73,9 @@ export class PedidoListComponent implements OnInit {
             if (res.sucesso) {
               this.toastr.success('Produto excluído com sucesso!', 'Sucesso');
             } else {
-              this.toastr.warning(res.mensagem.descricao, 'Atenção');
+              res.mensagens.forEach(mensagem => {
+                this.toastr.warning(mensagem.descricao, 'Atenção');
+              });
             }
           })
           .catch((err) => {

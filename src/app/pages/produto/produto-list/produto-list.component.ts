@@ -71,7 +71,9 @@ export class ProdutoListComponent implements OnInit {
             if (res.sucesso) {
               this.toastr.success('Produto excluído com sucesso!', 'Sucesso');
             } else {
-              this.toastr.warning(res.mensagem.descricao, 'Atenção');
+              res.mensagens.forEach(mensagem => {
+                this.toastr.warning(mensagem.descricao, 'Atenção');
+              });            
             }
           })
           .catch((err) => {

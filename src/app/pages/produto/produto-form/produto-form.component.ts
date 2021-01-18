@@ -52,7 +52,9 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
         if (res.sucesso) {
           this.model = res.dados;
         } else {
-          this.toastr.error(res.mensagem.descricao, 'Atenção');
+          res.mensagens.forEach(mensagem => {
+            this.toastr.warning(mensagem.descricao, 'Atenção');
+          });
           this.router.navigate(['/produtos']);
           return;
         }
@@ -80,7 +82,6 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
       if (!this.novoRegistro) {
         res = await this.produtoService.atualizar(this.model);
       } else {
-        console.log(this.model);
         res = await this.produtoService.inserir(this.model);
       }
 
@@ -88,7 +89,9 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
         this.toastr.success('Registro salvo com sucesso!', 'Sucesso');
         this.router.navigate(['/produtos']);
       } else {
-        this.toastr.warning(res.mensagem.descricao);
+        res.mensagens.forEach(mensagem => {
+          this.toastr.warning(mensagem.descricao, 'Atenção');
+        });
       }
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');

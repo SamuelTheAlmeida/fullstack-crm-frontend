@@ -70,7 +70,9 @@ export class UsuarioListComponent implements OnInit {
             if (res.sucesso) {
               this.toastr.success('Usuário excluído com sucesso!', 'Sucesso');
             } else {
-              this.toastr.warning(res.mensagem.descricao, 'Atenção');
+              res.mensagens.forEach(mensagem => {
+                this.toastr.warning(mensagem.descricao, 'Atenção');
+              });
             }
           })
           .catch((err) => {

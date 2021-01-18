@@ -15,6 +15,7 @@ export class AuthService extends BaseService {
     constructor(public httpClient: HttpClient) {
         super(httpClient);
         this.currentUserSubject = new BehaviorSubject<IUsuarioModel>(JSON.parse(localStorage.getItem('currentUser')));
+        console.log(localStorage.getItem('currentUser'));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -26,10 +27,9 @@ export class AuthService extends BaseService {
         senha = Md5.hashStr(senha).toString().toUpperCase();
         return this.httpClient.post<any>(`${this.apiBaseUrl}/usuario/login`, { email, senha })
             .pipe(map(user => {
-                console.log(user);
-                alert('b');
                 localStorage.setItem('currentUser', JSON.stringify(user.dados));
-                this.currentUserSubject.next(user);
+                console.log(localStorage.getItem('currentUser'));
+                this.currentUserSubject.next(user.dados);
                 return user;
             }));
     }

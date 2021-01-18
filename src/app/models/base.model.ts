@@ -2,7 +2,7 @@ import { IEnumModel } from './enum.model';
 
 export interface IBaseModel<T> {
   sucesso: boolean;
-  mensagem: IEnumModel;
+  mensagens: IEnumModel[];
   dados: T;
   resultadoValidacao: any;
 

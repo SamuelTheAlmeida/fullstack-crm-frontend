@@ -52,7 +52,9 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
         if (res.sucesso) {
           this.model = res.dados;
         } else {
-          this.toastr.error(res.mensagem.descricao, 'Atenção');
+          res.mensagens.forEach(mensagem => {
+            this.toastr.warning(mensagem.descricao, 'Atenção');
+          });
           this.router.navigate(['/usuario']);
           return;
         }
@@ -88,8 +90,10 @@ export class UsuarioFormComponent extends BaseFormComponent implements OnInit {
         this.toastr.success('Registro salvo com sucesso!', 'Sucesso');
         this.router.navigate(['/usuario']);
       } else {
-        this.toastr.warning(res.mensagem.descricao);
-      }
+          res.mensagens.forEach(mensagem => {
+            this.toastr.warning(mensagem.descricao, 'Atenção');
+          });
+        }
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');
     } finally {
