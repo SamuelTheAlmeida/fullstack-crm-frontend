@@ -6,7 +6,11 @@
     <!-- User image -->
     <li class="user-header bg-lightblue">
       <img src="assets/img/user.png" class="img-circle elevation-2" alt="User Image" />
-
+      
+      <p>
+        <small>{{authService.currentUserValue?.email}}</small>
+        <small>{{authService.currentUserValue?.perfil.nome}}</small>
+      </p>
     </li>
     <!-- Menu Footer-->
     <li class="user-footer">

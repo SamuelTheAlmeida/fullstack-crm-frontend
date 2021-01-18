@@ -3,7 +3,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ProdutoService } from 'src/app/services/produto.service';
 
@@ -31,7 +30,6 @@ export class ModalSelecionarProdutoComponent implements OnInit {
   constructor(
     private produtoService: ProdutoService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private dialogRef: MatDialogRef<ModalSelecionarProdutoComponent>,
     @Inject(MAT_DIALOG_DATA) data) {
     this.selecionadosAtuais = data;
@@ -64,8 +62,6 @@ export class ModalSelecionarProdutoComponent implements OnInit {
   }
 
   public buscar() {
-    this.spinner.show('modal');
-
     this.produtoService
       .listar(this.filtroPesquisa)
       .then((res) => {
@@ -91,8 +87,7 @@ export class ModalSelecionarProdutoComponent implements OnInit {
       })
       .catch((err) => {
         this.toastr.error(err.mensagem.descricao, 'Atenção');
-      })
-      .finally(() => this.spinner.hide('modal'));
+      });
   }
 }
 

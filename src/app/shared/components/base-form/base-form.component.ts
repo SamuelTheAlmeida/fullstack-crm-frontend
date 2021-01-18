@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsLocaleService } from 'ngx-bootstrap/datepicker';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,7 +15,6 @@ export class BaseFormComponent {
   constructor(
     private route: ActivatedRoute,
     public toastr: ToastrService,
-    public spinner: NgxSpinnerService,
     public router: Router,
     public localeService: BsLocaleService
   ) {

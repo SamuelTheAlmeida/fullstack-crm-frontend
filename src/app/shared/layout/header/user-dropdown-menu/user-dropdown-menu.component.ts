@@ -1,4 +1,6 @@
 import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { IUsuarioModel } from 'src/app/models/usuario.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-user-dropdown-menu',
@@ -6,6 +8,7 @@ import { Component, ElementRef, HostListener, OnInit, Renderer2, ViewChild } fro
   styleUrls: ['./user-dropdown-menu.component.scss'],
 })
 export class UserDropdownMenuComponent implements OnInit {
+  
   @ViewChild('dropdownMenu', { static: false }) dropdownMenu;
   @HostListener('document:click', ['$event'])
   clickout(event) {
@@ -16,7 +19,8 @@ export class UserDropdownMenuComponent implements OnInit {
 
   constructor(
     private elementRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -39,6 +43,6 @@ export class UserDropdownMenuComponent implements OnInit {
   }
 
   public logout() {
-    
+    this.authService.logout();
   }
 }

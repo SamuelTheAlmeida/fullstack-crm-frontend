@@ -6,16 +6,16 @@ import { IUsuarioModel } from "../models/usuario.model";
 import { Md5 } from 'ts-md5/dist/md5';
 
 import { BaseService } from './base.service';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
     private currentUserSubject: BehaviorSubject<IUsuarioModel>;
     public currentUser: Observable<IUsuarioModel>;
 
-    constructor(public httpClient: HttpClient) {
+    constructor(public httpClient: HttpClient, private router: Router) {
         super(httpClient);
         this.currentUserSubject = new BehaviorSubject<IUsuarioModel>(JSON.parse(localStorage.getItem('currentUser')));
-        console.log(localStorage.getItem('currentUser'));
         this.currentUser = this.currentUserSubject.asObservable();
     }
 
@@ -28,7 +28,6 @@ export class AuthService extends BaseService {
         return this.httpClient.post<any>(`${this.apiBaseUrl}/usuario/login`, { email, senha })
             .pipe(map(user => {
                 localStorage.setItem('currentUser', JSON.stringify(user.dados));
-                console.log(localStorage.getItem('currentUser'));
                 this.currentUserSubject.next(user.dados);
                 return user;
             }));
@@ -37,5 +36,6 @@ export class AuthService extends BaseService {
     public logout() {
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
+        this.router.navigate(['/login']);
     }
 }

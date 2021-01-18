@@ -23,7 +23,6 @@ import { MainComponent } from './shared/layout/main/main.component';
 import { SidebarComponent } from './shared/layout/sidebar/sidebar.component';
 import { getPtBrPaginatorIntl } from './core/helpers/ptbr-paginator-intl';
 import { ProdutoListComponent } from './pages/produto/produto-list/produto-list.component';
-import { NgxSpinnerModule } from 'ngx-spinner';
 import { ProdutoFormComponent } from './pages/produto/produto-form/produto-form.component';
 import { UsuarioListComponent } from './pages/usuario/usuario-list/usuario-list.component';
 import { UsuarioFormComponent } from './pages/usuario/usuario-form/usuario-form.component';
@@ -104,7 +103,6 @@ const maskConfig: Partial<IConfig> = {
     MatSelectModule,
     MatSortModule,
     MatTabsModule,
-    NgxSpinnerModule,
     MatDialogModule,
     MatIconModule,
     ModalModule.forRoot(),

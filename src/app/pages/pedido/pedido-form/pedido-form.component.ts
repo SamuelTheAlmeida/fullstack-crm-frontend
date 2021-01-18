@@ -3,17 +3,14 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatTableDataSource } from "@angular/material/table";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
-import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { IBaseModel } from "src/app/models/base.model";
 import { IPedidoModel } from "src/app/models/pedido.model";
 import { IProdutoPedidoModel } from "src/app/models/produto-pedido.model";
-import { IProdutoModel } from "src/app/models/produto.model";
 import { PedidoService } from "src/app/services/pedido.service";
 import { BaseFormComponent } from "src/app/shared/components/base-form/base-form.component";
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModalSelecionarProdutoComponent } from "../../modal-selecionar-produto/modal-selecionar-produto.component";
-import { isObject } from "ngx-bootstrap/chronos/utils/type-checks";
 
 
 @Component({
@@ -35,13 +32,12 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     public toastr: ToastrService,
-    public spinner: NgxSpinnerService,
     public router: Router,
     public localeService: BsLocaleService,
     private pedidoService: PedidoService,
     public matDialog: MatDialog
   ) {
-    super(route, toastr, spinner, router, localeService);
+    super(route, toastr, router, localeService);
 
     if (this.novoRegistro) {
       this.titulo = 'Novo Pedido';
@@ -55,7 +51,6 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
   }
 
   public async obterDados() {
-    this.spinner.show();
     try {
       if (!this.novoRegistro) {
         const res = await this.pedidoService.obterPorId(this.id);
@@ -78,8 +73,6 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');
       this.router.navigate(['/pedidos']);
-    } finally {
-      this.spinner.hide();
     }
   }
 
@@ -89,7 +82,6 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
       return;
     }
 
-    this.spinner.show();
     this.atualizarModel(this.form.value);
     try {
       let res: IBaseModel<IPedidoModel> = null;
@@ -111,8 +103,6 @@ export class PedidoFormComponent extends BaseFormComponent implements OnInit {
       }
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');
-    } finally {
-      this.spinner.hide();
     }
   }
 

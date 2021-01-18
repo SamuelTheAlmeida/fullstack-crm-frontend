@@ -1,10 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
-import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { first } from "rxjs/operators";
-import { IBaseModel } from "src/app/models/base.model";
 import { IUsuarioModel } from "src/app/models/usuario.model";
 import { AuthService } from "src/app/services/auth.service";
 
@@ -26,7 +24,6 @@ import { AuthService } from "src/app/services/auth.service";
     constructor(
       private route: ActivatedRoute,
       private toastr: ToastrService,
-      private spinner: NgxSpinnerService,
       private router: Router,
       private authService: AuthService
     ) {  
@@ -43,7 +40,6 @@ import { AuthService } from "src/app/services/auth.service";
             return;
         }
         this.atualizarModel(this.form.value);
-        this.spinner.show();
         this.authService.login(this.model.email, this.model.senha)
         .pipe(first())
         .subscribe(
@@ -51,9 +47,7 @@ import { AuthService } from "src/app/services/auth.service";
                 this.router.navigate([this.returnUrl]);
             },
             error => {
-                console.log(error);
                 this.toastr.error(error.error.message, 'Atenção');
-                this.spinner.hide();
             });
     }
 

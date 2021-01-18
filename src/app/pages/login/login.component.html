@@ -8,9 +8,6 @@
         <p class="login-box-msg">Iniciar sessão</p>
     
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()" class="text-center">
-        <ngx-spinner bdColor="rgba(0,0,0,0.3)" size="small" color="#fff" type="line-scale" [fullScreen]="false">
-            <p style="color: white;">Processando...</p>
-            </ngx-spinner>
           <div class="form-group has-feedback">
             <input type="email" class="form-control" formControlName="email" maxlength="50" placeholder="Email"
             [ngClass]="{ 'is-invalid': f.submitted && form.controls['email'].invalid }">
@@ -20,7 +17,7 @@
           </div>
 
           <div class="form-group has-feedback">
-            <input type="senha" class="form-control" placeholder="Senha" formControlName="senha" maxlength="50"
+            <input type="password" class="form-control" placeholder="Senha" formControlName="senha" maxlength="50"
             [ngClass]="{ 'is-invalid': f.submitted && form.controls['senha'].invalid }">
             <div *ngIf="f.submitted && form.controls['senha'].invalid" class="invalid-feedback">
                 <div *ngIf="form.controls['senha'].errors.required">Campo obrigatório</div>
@@ -33,10 +30,11 @@
             </div>
             <!-- /.col -->
           </div>
-        </form>
-        <div class="row text-center">
+          <div class="row text-center">
             <a href="cadastro.html" class="text-center">Novo cadastro</a>
-        </div>
+          </div>
+        </form>
+
     
       </div>
       <!-- /.login-box-body -->

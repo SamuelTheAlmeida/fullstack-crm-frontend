@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { BsLocaleService } from "ngx-bootstrap/datepicker";
-import { NgxSpinnerService } from "ngx-spinner";
 import { ToastrService } from "ngx-toastr";
 import { IBaseModel } from "src/app/models/base.model";
 import { IProdutoModel } from "src/app/models/produto.model";
@@ -26,12 +25,11 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
   constructor(
     route: ActivatedRoute,
     toastr: ToastrService,
-    spinner: NgxSpinnerService,
     router: Router,
     localeService: BsLocaleService,
     private produtoService: ProdutoService,
   ) {
-    super(route, toastr, spinner, router, localeService);
+    super(route, toastr, router, localeService);
 
     if (this.novoRegistro) {
       this.titulo = 'Novo Produto';
@@ -45,7 +43,6 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
   }
 
   public async obterDados() {
-    this.spinner.show();
     try {
       if (!this.novoRegistro) {
         const res = await this.produtoService.obterPorId(this.id);
@@ -63,8 +60,6 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');
       this.router.navigate(['/produtos']);
-    } finally {
-      this.spinner.hide();
     }
   }
 
@@ -74,7 +69,6 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
       return;
     }
 
-    this.spinner.show();
     this.atualizarModel(this.form.value);
     try {
       let res: IBaseModel<IProdutoModel> = null;
@@ -95,8 +89,6 @@ export class ProdutoFormComponent extends BaseFormComponent implements OnInit {
       }
     } catch (err) {
       this.toastr.error(err.mensagem.descricao, 'Atenção');
-    } finally {
-      this.spinner.hide();
     }
   }
 
