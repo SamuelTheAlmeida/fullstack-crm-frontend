@@ -41,7 +41,6 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss",
               "node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css",
-              "node_modules/ionicons/css/ionicons.min.css",
               "node_modules/admin-lte/dist/css/adminlte.min.css",
               "node_modules/ngx-bootstrap/datepicker/bs-datepicker.css"
             ],
