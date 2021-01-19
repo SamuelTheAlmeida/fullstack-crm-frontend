@@ -17,7 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 history.go();
             }
 
-            const error = err.error.message || err.statusText;
+            const error = err || err.statusText;
             return throwError(error);
         }))
     }

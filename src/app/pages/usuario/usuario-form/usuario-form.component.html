@@ -37,13 +37,39 @@
                     <label for="inputId" class="mb-1">Id</label>
                     <input type="text" id="inputId" class="form-control form-control-sm" formControlName="id" />
                   </div>
+
+                  <div class="form-group col-md-2">
+                    <label for="inputPerfil" class="mb-1">Perfil</label>
+                    <select id="selectTipo" class="form-control form-control-sm"  [(ngModel)]="perfilSelecionado" formControlName="perfilId">
+                      <option *ngFor="let item of listaPerfis" [ngValue]="item.codigo">
+                        {{item.nome}}</option>
+                    </select>
+                  </div>
   
-                  <div class="form-group col-md-6">
+                  <div class="form-group col-md-7">
                     <label for="inputEmail" class="mb-1">Email</label>
                     <input type="text" id="inputEmail" class="form-control form-control-sm" formControlName="email" maxlength="50"
                      [ngClass]="{ 'is-invalid': f.submitted && form.controls['email'].invalid }" />
                     <div *ngIf="f.submitted && form.controls['email'].invalid" class="invalid-feedback">
                       <div *ngIf="form.controls['email'].errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputSenha" class="mb-1">Senha</label>
+                    <input type="password" id="inputSenha" class="form-control form-control-sm" formControlName="senha" maxlength="50"
+                     [ngClass]="{ 'is-invalid': f.submitted && form.controls['senha'].invalid }" />
+                    <div *ngIf="f.submitted && form.controls['senha'].invalid" class="invalid-feedback">
+                      <div *ngIf="form.controls['senha'].errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="inputConfirmarSenha" class="mb-1">Confirmar Senha</label>
+                    <input type="password" id="inputConfirmarSenha" class="form-control form-control-sm" formControlName="confirmarSenha" maxlength="50"
+                     [ngClass]="{ 'is-invalid': f.submitted && form.controls['confirmarSenha'].invalid }" />
+                     <div *ngIf="f.submitted && form.controls['confirmarSenha'].invalid" class="invalid-feedback">
+                      <div *ngIf="form.controls['confirmarSenha'].errors.required">Campo obrigatório</div>
                     </div>
                   </div>
 
