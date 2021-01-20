@@ -1,0 +1,88 @@
+<div class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-12">
+          <ol class="breadcrumb float-sm-left">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']">
+                <i class="fas fa-home"></i>
+                Página Inicial</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/produtos']">Produtos</a>
+            </li>
+            <li class="breadcrumb-item active">{{ titulo }}</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card card-outline card-lightblue">
+            <div class="card-header">
+              <h3 class="card-title mb-0">
+                <i *ngIf="this.id" class="fas fa-pencil-alt pr-2"></i>
+                <i *ngIf="!this.id" class="far fa-file pr-2"></i>
+                {{ titulo }}
+              </h3>
+            </div>
+            <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
+              <div class=" card-body">
+                <div class="row">
+                  <div class="form-group col-md-3">
+                    <label for="inputId" class="mb-1">Id</label>
+                    <input type="text" id="inputId" class="form-control form-control-sm" formControlName="id" />
+                  </div>
+  
+                  <div class="form-group col-md-5">
+                    <label for="inputNome" class="mb-1">Nome</label>
+                    <input type="text" id="inputNome" class="form-control form-control-sm" formControlName="nome" maxlength="50"
+                     [ngClass]="{ 'is-invalid': f.submitted && form.controls['nome'].invalid }" />
+                    <div *ngIf="f.submitted && form.controls['nome'].invalid" class="invalid-feedback">
+                      <div *ngIf="form.controls['nome'].errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+  
+                  <div class="form-group col-md-4">
+                    <label for="inputPreco" class="mb-1">Preço</label>
+                     <input matInput
+                        mask="separator.2"
+                        [thousandSeparator]="'.'"
+                        [decimalMarker]="','"
+                        prefix="R$ "
+                        type="text"
+                        [dropSpecialCharacters]="true"
+                        class="form-control form-control-sm"
+                        [ngClass]="{ 'is-invalid': f.submitted && form.controls['preco'].invalid }"
+                        formControlName="preco"
+                        maxlength="14"
+                        >
+
+                    <div *ngIf="f.submitted && form.controls['preco'].invalid" class="invalid-feedback">
+                      <div *ngIf="form.controls['preco'].errors.required">Campo obrigatório</div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-sm mr-1">
+                  <i class="far fa-save"></i> Salvar
+                </button>
+  
+                <button type="button" class="btn btn-default btn-sm" (click)="onBack()">
+                  <i class="fas fa-times"></i> Cancelar
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

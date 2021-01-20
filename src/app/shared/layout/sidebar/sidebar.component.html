@@ -1,0 +1,41 @@
+<aside #mainSidebar class="main-sidebar sidebar-dark-lightblue elevation-4">
+  <!-- Brand Logo -->
+  <a [routerLink]="['/']" class="brand-link">
+    <div class="row text-center">
+      <div class="col-md-10">
+        <span class="brand-text"><b>FullStack CRM</b></span>
+      </div>
+    </div>
+  </a>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <!-- Sidebar Menu -->
+    <nav class="mt-2">
+      <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-flat nav-legacy nav-compact nav-child-indent"
+        data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-header">MENU</li>
+          <li class="nav-item">
+            <a [routerLink]="['/usuario']" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Usuários</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/produtos']" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Produtos</p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/pedidos']" class="nav-link">
+              <i class="far fa-circle nav-icon"></i>
+              <p>Pedidos</p>
+            </a>
+          </li>  
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
