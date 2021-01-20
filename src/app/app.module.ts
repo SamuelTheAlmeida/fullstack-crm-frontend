@@ -45,6 +45,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon'; 
 import { IConfig, NgxMaskModule } from 'ngx-mask';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 
 
 registerLocaleData(localePt, 'pt-BR');
@@ -69,7 +70,8 @@ const maskConfig: Partial<IConfig> = {
     LoginComponent,
     PedidoListComponent,
     PedidoFormComponent,
-    ModalSelecionarProdutoComponent
+    ModalSelecionarProdutoComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './core/guards/auth.guard';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { ErroComponent } from './pages/erro/erro.component';
 import { InicialComponent } from './pages/inicial/inicial.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'cadastro',
+    component: CadastroComponent,
   },
   {
     path: 'erro/:id',

@@ -5,9 +5,17 @@
       </div>
       <!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Iniciar sessão</p>
+        <p class="login-box-msg">Cadastro</p>
     
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()" class="text-center">
+        <div class="form-group has-feedback">
+            <label for="inputPerfil" class="mb-1">Perfil</label>
+            <select id="selectTipo" class="form-control"  [(ngModel)]="perfilSelecionado" formControlName="perfilId">
+                <option *ngFor="let item of listaPerfis" [ngValue]="item.codigo">
+                {{item.nome}}</option>
+            </select>
+            </div>
+
           <div class="form-group has-feedback">
             <input type="email" class="form-control" formControlName="email" maxlength="50" placeholder="Email"
             [ngClass]="{ 'is-invalid': f.submitted && form.controls['email'].invalid }">
@@ -23,17 +31,27 @@
                 <div *ngIf="form.controls['senha'].errors.required">Campo obrigatório</div>
             </div>
           </div>
+
+          <div class="form-group has-feedback">
+            <input type="password" id="inputConfirmarSenha" placeholder="Confirmar senha" 
+            class="form-control" formControlName="confirmarSenha" maxlength="50"
+             [ngClass]="{ 'is-invalid': f.submitted && form.controls['confirmarSenha'].invalid }" />
+             <div *ngIf="f.submitted && form.controls['confirmarSenha'].invalid" class="invalid-feedback">
+              <div *ngIf="form.controls['confirmarSenha'].errors.required">Campo obrigatório</div>
+            </div>
+          </div>
+
+
+
           <div class="row">
             <!-- /.col -->
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+            <div class="col-4">
+                <button type="button" class="btn btn-secondary btn-block btn-flat" (click)="onBack()">Voltar</button>
+              </div>
+            <div class="col-8">
+              <button type="submit" class="btn btn-primary btn-block btn-flat">Salvar</button>
             </div>
             <!-- /.col -->
-          </div>
-          <div class="row text-center mt-3">
-            <div class="col-12">
-              <a [routerLink]="['/cadastro']" class="text-center">Cadastre-se!</a>
-            </div>
           </div>
         </form>
 

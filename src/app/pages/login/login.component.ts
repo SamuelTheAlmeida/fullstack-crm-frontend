@@ -53,8 +53,7 @@ import { AuthService } from "src/app/services/auth.service";
                 }
             },
             error => {
-                console.log(error);
-                this.toastr.error(error.error.message, 'Atenção');
+                this.toastr.error(error, 'Atenção');
             });
     }
 

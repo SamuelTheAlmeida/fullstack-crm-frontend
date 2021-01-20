@@ -34,9 +34,10 @@ export class AuthService extends BaseService {
         senha = Md5.hashStr(senha).toString().toUpperCase();
         return this.httpClient.post<any>(`${this.apiBaseUrl}/usuario/login`, { email, senha })
             .pipe(map(user => {
-                console.log(JSON.stringify(user.dados));
-                localStorage.setItem('currentUser', JSON.stringify(user.dados));
-                this.currentUserSubject.next(user.dados);
+                if (user.sucesso) {
+                    localStorage.setItem('currentUser', JSON.stringify(user.dados));
+                    this.currentUserSubject.next(user.dados);
+                }
                 return user;
             }));
     }
