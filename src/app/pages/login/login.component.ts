@@ -44,9 +44,16 @@ import { AuthService } from "src/app/services/auth.service";
         .pipe(first())
         .subscribe(
             _data => {
-                this.router.navigate([this.returnUrl]);
+                if (_data.sucesso) {
+                    this.router.navigate([this.returnUrl]);
+                } else {
+                    _data.mensagens.forEach(mensagem => {
+                        this.toastr.warning(mensagem.descricao, 'Atenção');
+                    });
+                }
             },
             error => {
+                console.log(error);
                 this.toastr.error(error.error.message, 'Atenção');
             });
     }

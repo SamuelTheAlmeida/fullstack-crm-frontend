@@ -25,13 +25,16 @@ export class AuthService extends BaseService {
     }
 
     public get currentUserValue(): IUsuarioModel {
-        return this.currentUserSubject.value;
+        if (this.currentUserSubject) {
+            return this.currentUserSubject.value;
+        }
     }
 
     public login(email: string, senha: string) {
         senha = Md5.hashStr(senha).toString().toUpperCase();
         return this.httpClient.post<any>(`${this.apiBaseUrl}/usuario/login`, { email, senha })
             .pipe(map(user => {
+                console.log(JSON.stringify(user.dados));
                 localStorage.setItem('currentUser', JSON.stringify(user.dados));
                 this.currentUserSubject.next(user.dados);
                 return user;

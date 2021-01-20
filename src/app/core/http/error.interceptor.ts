@@ -3,6 +3,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
+import { IBaseModel } from 'src/app/models/base.model';
 
 
 @Injectable()
@@ -15,6 +16,10 @@ export class ErrorInterceptor implements HttpInterceptor {
                 
                 this.authService.logout();
                 history.go();
+            }
+
+            if (err.status === 403) {
+                return throwError({ sucesso: false, mensagens: [{ nome: 'Acesso Negado!', descricao: 'Você não possui acesso a esse recurso.' }] } as IBaseModel<any>);
             }
 
             const error = err || err.statusText;
