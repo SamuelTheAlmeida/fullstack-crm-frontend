@@ -47,8 +47,6 @@ export class PedidoListComponent implements OnInit {
             this.semDados = res.dados.length === 0;
         })
         .catch((err) => {
-            alert('abcde');
-            debugger
             this.toastr.error(err.mensagem.descricao, 'Atenção');
         })
     }

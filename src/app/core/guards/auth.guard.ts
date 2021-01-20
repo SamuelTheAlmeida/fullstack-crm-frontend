@@ -15,8 +15,17 @@ export class AuthGuard implements CanActivate {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const currentUser = this.authService.currentUserValue;
+    const perfisRota = next.data.perfis;
+
     if (currentUser) {
-        return true;
+      if (perfisRota) {
+        if (!perfisRota.includes(currentUser.perfil.nome)) {
+          this.toastr.error('Você não possui acesso a essa página.', 'Acesso negado!');
+          this.router.navigate(['/']);
+          return false;
+        }
+      }
+      return true;
     }
 
     this.router.navigate(['/login'], { queryParams: { returnUrl: state.url } });

@@ -36,14 +36,17 @@ const routes: Routes = [
       },
       {
         path: 'usuario',
+        data: { perfis: ['Administrador'] },
         component: UsuarioListComponent, canActivate: [AuthGuard]
       },
       {
         path: 'usuario/id/:id',
+        data: { perfis: ['Administrador'] },
         component: UsuarioFormComponent, canActivate: [AuthGuard]
       },
       {
         path: 'usuario/novo',
+        data: { perfis: ['Administrador'] },
         component: UsuarioFormComponent, canActivate: [AuthGuard]
       },
       {
@@ -68,7 +71,7 @@ const routes: Routes = [
     path: 'erro/:id',
     component: ErroComponent,
   },
-  { path: '**', redirectTo: '' },
+  { path: '**', redirectTo: '/' },
 ];
 
 @NgModule({
