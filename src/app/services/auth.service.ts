@@ -15,8 +15,13 @@ export class AuthService extends BaseService {
 
     constructor(public httpClient: HttpClient, private router: Router) {
         super(httpClient);
-        this.currentUserSubject = new BehaviorSubject<IUsuarioModel>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+        try {
+            this.currentUserSubject = new BehaviorSubject<IUsuarioModel>(JSON.parse(localStorage.getItem('currentUser')));
+            this.currentUser = this.currentUserSubject.asObservable();
+        } catch {
+            this.logout();
+        }
+
     }
 
     public get currentUserValue(): IUsuarioModel {
@@ -35,7 +40,10 @@ export class AuthService extends BaseService {
 
     public logout() {
         localStorage.removeItem('currentUser');
-        this.currentUserSubject.next(null);
+        if (this.currentUserSubject) {
+            this.currentUserSubject.next(null);
+        }
+        
         this.router.navigate(['/login']);
     }
 }

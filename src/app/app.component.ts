@@ -12,7 +12,7 @@ export class AppComponent implements OnInit {
   public currentUser: IUsuarioModel;
 
   constructor(private authService: AuthService) { 
-    this.authService.currentUser.subscribe(x => this.currentUser = x);
+    //this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
