@@ -4,3 +4,5 @@ services:
     build: .
     ports:
       - "80:80"
+    environment:
+      npm_config_loglevel: "silent npm version"
